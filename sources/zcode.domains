@@ -1,0 +1,16 @@
+// ZCode (Z.ai / Zhipu AI, 智谱) — официальные домены, подтверждённые документацией.
+// Источники фиксации (дата 2026-11-15):
+//   - https://docs.z.ai/guides/overview/quick-start.md — глобальный API
+//     https://api.z.ai/api/paas/v4/;
+//   - https://docs.bigmodel.cn/cn/guide/start/quick-start.md — китайский API
+//     https://open.bigmodel.cn/api/paas/v4/chat/completions;
+//   - https://docs.bigmodel.cn/ — платформа bigmodel.cn.
+// Легаси-домен api.zhipuai.cn в текущей документации не подтверждён —
+// в список не включён. Сторонние агрегаторы не используются.
+z.ai
+chat.z.ai
+docs.z.ai
+api.z.ai
+bigmodel.cn
+open.bigmodel.cn
+docs.bigmodel.cn

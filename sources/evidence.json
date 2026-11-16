@@ -1,0 +1,50 @@
+{
+  "$comment": "Доказательная база верификации сетевой принадлежности KIMI (Moonshot AI) и ZCode (Z.ai/Zhipu). Собрано 2026-11-15 вручную; скрипт update_lists.sh обновляет только endpoint-резолвы. Имена AS — через RIPEstat as-overview; whois — через RIPEstat whois; PTR — через DoH. Сторонние агрегаторы (ipinfo/third-party lists) для данных не используются.",
+  "verified_date": "2026-11-15",
+  "conclusion": {
+    "own_announced_prefixes_kimi": false,
+    "own_announced_prefixes_zcode": false,
+    "rationale": "Ни Moonshot AI, ни Zhipu/Z.AI не имеют собственных верифицируемых анонсируемых префиксов: вся инфраструктура размещена на Alibaba Cloud (AS37963/AS45102/AS24429), ChinaNet/China Telecom IDC (AS134760/AS23724), Cloudflare и Vercel. Списки *_cidr_ipv4.txt с собственными префиксами существовать не могут; публикуются домены и текущие endpoint-/32."
+  },
+  "discovery_attempts": {
+    "peeringdb_api": {
+      "urls": [
+        "https://www.peeringdb.com/api/net?name__contains=moonshot",
+        "https://www.peeringdb.com/api/net?name__contains=zhipu",
+        "https://www.peeringdb.com/api/net?name__contains=z.ai"
+      ],
+      "result": "пусто (записей нет)",
+      "date": "2026-11-15"
+    },
+    "bgp_tools_search": {
+      "urls": ["https://bgp.tools/search?q=Moonshot", "https://bgp.tools/search?q=Zhipu"],
+      "result": "страницы отдаются (HTTP 200), результаты рендерятся JS — извлечь нельзя; в HTML ASN-записей нет",
+      "date": "2026-11-15"
+    },
+    "web_search": {
+      "result": "bgp.he.net/ipinfo/PeeringDB записей под именами Moonshot AI / Zhipu AI не содержит; официальных CIDR-списков у сервисов нет",
+      "date": "2026-11-15"
+    }
+  },
+  "rejected_claims": [
+    {
+      "claim": "38.145.202.0/24 связан с Moonshot AI (фрагмент сниппета поиска bgp.tools)",
+      "verification": "RIPEstat prefix-overview: origin AS18978 ENZUINC-US (Enzu Inc), whois: NetName=ENZU-CGNT-NET-1, Organization=Cogent Communications; PTR 38.145.202.12 = us1.node.check-host.net (нода мониторинга check-host.net), 38.145.202.13 = scalabledns.com",
+      "verdict": "опровергнуто — к Moonshot AI отношения не имеет; в списки не включено",
+      "date": "2026-11-15"
+    }
+  ],
+  "endpoint_infrastructure": [
+    {"domain": "api.moonshot.cn", "ip_sample": "8.147.223.37", "prefix": "8.147.192.0/18", "asns": ["AS37963 ALIBABA-CN-NET - Hangzhou Alibaba Advertising Co.,Ltd."], "classification": "Aliyun anti-DDoS (CNAME *.aliyunddos1022.com)"},
+    {"domain": "kimi.com / kimi.moonshot.cn / platform.moonshot.cn", "ip_sample": "103.143.17.156", "prefix": "103.143.16.0/23", "asns": ["AS134760 ChinaNet-Hebei-Shijiazhuang-IDC"], "classification": "китайский anti-DDOS-провайдер (whois: Hebei Sea Whale Technology Co. Ltd., netname HJ-HIDDOS)"},
+    {"domain": "www.kimi.com / moonshot.ai / api.moonshot.ai / api.kimi.ai", "ip_sample": "104.18.28.136", "prefix": "104.18.0.0/15 (Cloudflare)", "asns": ["AS13335 Cloudflare"], "classification": "Cloudflare (общий CDN)"},
+    {"domain": "api.z.ai", "ip_sample": "47.245.170.100", "prefix": "47.245.128.0/18", "asns": ["AS45102 ALIBABA-CN-NET - Alibaba (US) Technology Co., Ltd."], "classification": "Aliyun Global Accelerator (CNAME *.aliyunga0017.com)"},
+    {"domain": "z.ai", "ip_sample": "8.216.131.99", "prefix": "8.216.128.0/18", "asns": ["AS45102"], "classification": "Alibaba"},
+    {"domain": "chat.z.ai", "ip_sample": "43.109.31.178", "prefix": "43.109.31.0/24", "asns": ["AS24429 Taobao - Zhejiang Taobao Network Co.,Ltd (Alibaba)"], "classification": "Alibaba"},
+    {"domain": "docs.z.ai", "ip_sample": "76.76.21.98", "prefix": "76.76.21.0/24 (Vercel)", "asns": ["Vercel"], "classification": "Vercel (общий хостинг docs, Mintlify/Vercel)"},
+    {"domain": "open.bigmodel.cn", "ip_sample": "47.254.134.77", "prefix": "Alibaba", "asns": ["AS45102/AS37963"], "classification": "Alibaba"},
+    {"domain": "bigmodel.cn", "ip_sample": "60.205.172.105", "prefix": "60.205.128.0/17", "asns": ["AS37963"], "classification": "Aliyun China"},
+    {"domain": "api.zhipuai.cn", "ip_sample": "117.50.179.92", "prefix": "117.50.160.0/19", "asns": ["AS23724 CHINANET-IDC-BJ-AP", "AS4808"], "classification": "легаси-домен, в текущей документации не подтверждён — исключён из списков"}
+  ],
+  "tools": ["RIPEstat data API (stat.ripe.net)", "Google DoH (dns.google/resolve)", "Cloudflare DoH (cloudflare-dns.com/dns-query)", "PeeringDB API", "WebSearch"]
+}

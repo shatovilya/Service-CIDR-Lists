@@ -1,0 +1,7 @@
+api.z.ai
+bigmodel.cn
+chat.z.ai
+docs.bigmodel.cn
+docs.z.ai
+open.bigmodel.cn
+z.ai

@@ -1,0 +1,10 @@
+api.kimi.ai
+api.moonshot.ai
+api.moonshot.cn
+kimi.com
+kimi.moonshot.cn
+moonshot.ai
+platform.kimi.ai
+platform.kimi.com
+platform.moonshot.cn
+www.kimi.com

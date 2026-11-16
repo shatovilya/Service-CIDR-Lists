@@ -1,0 +1,38 @@
+# Ежедневное обновление списков (04:17 UTC). Действия запинованы по SHA.
+# Токены: только встроенный GITHUB_TOKEN на push; секретов нет.
+
+name: update-lists
+
+on:
+  schedule:
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-lists
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: Regenerate lists
+        run: bash scripts/update_lists.sh
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A Kimi ZCode sources/last_run.json
+          if git diff --staged --quiet; then
+            echo "Изменений нет — коммит не нужен"
+          else
+            git commit -m "lists: daily DoH refresh ($(date -u '+%Y-%m-%d'))"
+            git push
+          fi

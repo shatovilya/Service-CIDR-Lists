@@ -1,0 +1,22 @@
+// KIMI (Moonshot AI, 月之暗面) — официальные домены, подтверждённые документацией.
+// Источники фиксации (дата 2026-11-15):
+//   - https://platform.kimi.com/docs/api/authentication — API base URL
+//     https://api.moonshot.cn/v1 (доки мигрировали с platform.moonshot.cn,
+//     который отдаёт 301 на platform.kimi.com);
+//   - https://platform.kimi.ai/docs/get-your-api-key — глобальный API
+//     https://api.moonshot.ai/v1;
+//   - https://www.kimi.com/code/docs/en — Kimi Code overseas endpoint
+//     https://api.kimi.ai/coding/.
+// В список включаются только домены, упомянутые в официальной документации
+// или являющиеся официальными продуктами компании. Сторонние агрегаторы
+// не используются.
+api.moonshot.cn
+api.moonshot.ai
+api.kimi.ai
+platform.kimi.com
+platform.kimi.ai
+platform.moonshot.cn
+kimi.com
+www.kimi.com
+kimi.moonshot.cn
+moonshot.ai
