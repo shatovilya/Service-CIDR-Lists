@@ -121,17 +121,19 @@ build_service() {
 }
 
 main() {
-  local kimi_counts zcode_counts
+  local kimi_counts zcode_counts bitdefender_counts
   kimi_counts="$(build_service Kimi kimi "${SOURCES_DIR}/kimi.domains")"
   zcode_counts="$(build_service ZCode zcode "${SOURCES_DIR}/zcode.domains")"
+  bitdefender_counts="$(build_service Bitdefender bitdefender "${SOURCES_DIR}/bitdefender.domains")"
 
   jq -n --arg run "$RUN_STAMP" \
-        --arg k "$kimi_counts" --arg z "$zcode_counts" \
+        --arg k "$kimi_counts" --arg z "$zcode_counts" --arg b "$bitdefender_counts" \
         '{run_utc: $run,
-          kimi:   {domains: ($k | split(" ")[0] | tonumber), endpoints: ($k | split(" ")[1] | tonumber)},
-          zcode:  {domains: ($z | split(" ")[0] | tonumber), endpoints: ($z | split(" ")[1] | tonumber)}}' \
+          kimi:        {domains: ($k | split(" ")[0] | tonumber), endpoints: ($k | split(" ")[1] | tonumber)},
+          zcode:       {domains: ($z | split(" ")[0] | tonumber), endpoints: ($z | split(" ")[1] | tonumber)},
+          bitdefender: {domains: ($b | split(" ")[0] | tonumber), endpoints: ($b | split(" ")[1] | tonumber)}}' \
     > "${SOURCES_DIR}/last_run.json"
-  log "готово: Kimi(domains/endpoints)=${kimi_counts}, ZCode=${zcode_counts}"
+  log "готово: Kimi(domains/endpoints)=${kimi_counts}, ZCode=${zcode_counts}, Bitdefender=${bitdefender_counts}"
 }
 
 main "$@"
