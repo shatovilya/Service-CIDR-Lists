@@ -1,12 +1,12 @@
 {
-  "run_utc": "2026-11-21T12:43:24Z",
+  "run_utc": "2026-11-22T12:38:57Z",
   "kimi": {
     "domains": 10,
     "endpoints": 8
   },
   "zcode": {
     "domains": 7,
-    "endpoints": 17
+    "endpoints": 15
   },
   "bitdefender": {
     "domains": 1,
